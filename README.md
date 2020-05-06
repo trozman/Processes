@@ -18,7 +18,11 @@ https://creativecommons.org/licenses/by/4.0/
 
 Author(s):
 Tomislav Rozman
+
 Email: tomislav.rozman@bicero.com
+
 LinkedIn: https://www.linkedin.com/in/tomislavrozman
+
 Web: http://www.bicero.com/
+
 FB page: https://www.facebook.com/bicero
