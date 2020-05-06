@@ -1,5 +1,5 @@
 # Processes
-Various models and descriptions of (business) processes.
+Various models and descriptions of (business) processes (BPMN and DMN).
 
 Use Camunda BPMN editor to view/edit the files.
 
