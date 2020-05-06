@@ -15,3 +15,10 @@ Attribution — You must give appropriate credit, provide a link to the license,
 No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
 
 https://creativecommons.org/licenses/by/4.0/
+
+Author(s):
+Tomislav Rozman
+Email: tomislav.rozman@bicero.com
+LinkedIn: https://www.linkedin.com/in/tomislavrozman
+Web: http://www.bicero.com/
+FB page: https://www.facebook.com/bicero
