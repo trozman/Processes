@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" id="Definitions_08h8gtv" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.8.0">
+  <bpmn:process id="Process_0goazfb" isExecutable="true">
+    <bpmn:sequenceFlow id="SequenceFlow_1lzvtn1" sourceRef="StartEvent_1" targetRef="Task_0e0x6yk" />
+    <bpmn:sequenceFlow id="SequenceFlow_07fbayn" sourceRef="Task_0e0x6yk" targetRef="Task_18xnkxk" />
+    <bpmn:subProcess id="Task_18xnkxk" name="P02 Gathering permits">
+      <bpmn:incoming>SequenceFlow_07fbayn</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0t6r3gx</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:sequenceFlow id="SequenceFlow_0t6r3gx" sourceRef="Task_18xnkxk" targetRef="Task_0mua85t" />
+    <bpmn:subProcess id="Task_0mua85t" name="P03 Preparation and signing the contract">
+      <bpmn:incoming>SequenceFlow_0t6r3gx</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0rfzfvu</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:sequenceFlow id="SequenceFlow_0rfzfvu" sourceRef="Task_0mua85t" targetRef="Task_14vqb8l" />
+    <bpmn:subProcess id="Task_14vqb8l" name="P04 Obtaining permits and paying the taxes">
+      <bpmn:incoming>SequenceFlow_0rfzfvu</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1rvhnpv</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:startEvent id="StartEvent_1" name="Somebody wants to sell/buy real estate and the parties are already known">
+      <bpmn:outgoing>SequenceFlow_1lzvtn1</bpmn:outgoing>
+      <bpmn:conditionalEventDefinition id="ConditionalEventDefinition_1n5qbu7">
+        <bpmn:condition xsi:type="bpmn:tFormalExpression" />
+      </bpmn:conditionalEventDefinition>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1rvhnpv" sourceRef="Task_14vqb8l" targetRef="Task_1wwj4yy" />
+    <bpmn:subProcess id="Task_1wwj4yy" name="P05 Signature authentication and payment">
+      <bpmn:incoming>SequenceFlow_1rvhnpv</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0kgyann</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:sequenceFlow id="SequenceFlow_0kgyann" sourceRef="Task_1wwj4yy" targetRef="Task_1cquhjp" />
+    <bpmn:subProcess id="Task_1cquhjp" name="P06 Submit new state to the Land registry">
+      <bpmn:incoming>SequenceFlow_0kgyann</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0hr1mq3</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:endEvent id="EndEvent_1gew40g">
+      <bpmn:incoming>SequenceFlow_0hr1mq3</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0hr1mq3" sourceRef="Task_1cquhjp" targetRef="EndEvent_1gew40g" />
+    <bpmn:adHocSubProcess id="Task_0e0x6yk" name="P01 Negotiation seller-buyer">
+      <bpmn:incoming>SequenceFlow_1lzvtn1</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_07fbayn</bpmn:outgoing>
+    </bpmn:adHocSubProcess>
+    <bpmn:textAnnotation id="TextAnnotation_0f4hgwo">    <bpmn:text><![CDATA[Process: Selling the real estate (land)
+AS-IS]]></bpmn:text>
+</bpmn:textAnnotation>
+    <bpmn:association id="Association_1lb84nl" sourceRef="StartEvent_1" targetRef="TextAnnotation_0f4hgwo" />
+    <bpmn:textAnnotation id="TextAnnotation_1ffbejz">    <bpmn:text>Duration: ~ 1week</bpmn:text>
+</bpmn:textAnnotation>
+    <bpmn:association id="Association_1flcmdc" sourceRef="Task_0mua85t" targetRef="TextAnnotation_1ffbejz" />
+    <bpmn:textAnnotation id="TextAnnotation_0xdo4de">    <bpmn:text>Duration: ~ up to 2 months</bpmn:text>
+</bpmn:textAnnotation>
+    <bpmn:association id="Association_0h3fmi3" sourceRef="Task_18xnkxk" targetRef="TextAnnotation_0xdo4de" />
+    <bpmn:textAnnotation id="TextAnnotation_0ilt1ff">    <bpmn:text>Duration: ~ up to 2 months</bpmn:text>
+</bpmn:textAnnotation>
+    <bpmn:association id="Association_1c5m6u1" sourceRef="Task_14vqb8l" targetRef="TextAnnotation_0ilt1ff" />
+    <bpmn:textAnnotation id="TextAnnotation_1ikreuy">    <bpmn:text>Duration: ~few days</bpmn:text>
+</bpmn:textAnnotation>
+    <bpmn:association id="Association_05zp63r" sourceRef="Task_1wwj4yy" targetRef="TextAnnotation_1ikreuy" />
+    <bpmn:textAnnotation id="TextAnnotation_0mm1ex6">    <bpmn:text>Duration:  ~3 months</bpmn:text>
+</bpmn:textAnnotation>
+    <bpmn:association id="Association_0iqx2ji" sourceRef="Task_1cquhjp" targetRef="TextAnnotation_0mm1ex6" />
+    <bpmn:textAnnotation id="TextAnnotation_03c5998">    <bpmn:text>Duration: ~depends on the seller-buyer</bpmn:text>
+</bpmn:textAnnotation>
+    <bpmn:association id="Association_0kwleqf" sourceRef="Task_0e0x6yk" targetRef="TextAnnotation_03c5998" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_0goazfb">
+      <bpmndi:BPMNEdge id="SequenceFlow_1lzvtn1_di" bpmnElement="SequenceFlow_1lzvtn1">
+        <di:waypoint xsi:type="dc:Point" x="215" y="177" />
+        <di:waypoint xsi:type="dc:Point" x="270" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_07fbayn_di" bpmnElement="SequenceFlow_07fbayn">
+        <di:waypoint xsi:type="dc:Point" x="370" y="177" />
+        <di:waypoint xsi:type="dc:Point" x="430" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SubProcess_0r7looe_di" bpmnElement="Task_18xnkxk" bioc:stroke="rgb(67, 160, 71)" bioc:fill="rgb(200, 230, 201)">
+        <dc:Bounds x="430" y="137" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0t6r3gx_di" bpmnElement="SequenceFlow_0t6r3gx">
+        <di:waypoint xsi:type="dc:Point" x="530" y="177" />
+        <di:waypoint xsi:type="dc:Point" x="590" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SubProcess_131tifj_di" bpmnElement="Task_0mua85t" bioc:stroke="rgb(67, 160, 71)" bioc:fill="rgb(200, 230, 201)">
+        <dc:Bounds x="590" y="137" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0rfzfvu_di" bpmnElement="SequenceFlow_0rfzfvu">
+        <di:waypoint xsi:type="dc:Point" x="690" y="177" />
+        <di:waypoint xsi:type="dc:Point" x="750" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SubProcess_167ju1n_di" bpmnElement="Task_14vqb8l" bioc:stroke="rgb(67, 160, 71)" bioc:fill="rgb(200, 230, 201)">
+        <dc:Bounds x="750" y="137" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0f4hgwo_di" bpmnElement="TextAnnotation_0f4hgwo">
+        <dc:Bounds x="147" y="73" width="133" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1lb84nl_di" bpmnElement="Association_1lb84nl">
+        <di:waypoint xsi:type="dc:Point" x="201" y="160" />
+        <di:waypoint xsi:type="dc:Point" x="208" y="128" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="StartEvent_022zb33_di" bpmnElement="StartEvent_1" bioc:stroke="#000" bioc:fill="#fff">
+        <dc:Bounds x="179" y="159" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="155" y="202" width="85" height="66" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1rvhnpv_di" bpmnElement="SequenceFlow_1rvhnpv">
+        <di:waypoint xsi:type="dc:Point" x="850" y="177" />
+        <di:waypoint xsi:type="dc:Point" x="910" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SubProcess_02wof7n_di" bpmnElement="Task_1wwj4yy" bioc:stroke="#43A047" bioc:fill="#C8E6C9">
+        <dc:Bounds x="910" y="137" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0kgyann_di" bpmnElement="SequenceFlow_0kgyann">
+        <di:waypoint xsi:type="dc:Point" x="1010" y="177" />
+        <di:waypoint xsi:type="dc:Point" x="1050" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SubProcess_0a5xctm_di" bpmnElement="Task_1cquhjp">
+        <dc:Bounds x="1050" y="137" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1gew40g_di" bpmnElement="EndEvent_1gew40g">
+        <dc:Bounds x="1202" y="159" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0hr1mq3_di" bpmnElement="SequenceFlow_0hr1mq3">
+        <di:waypoint xsi:type="dc:Point" x="1150" y="177" />
+        <di:waypoint xsi:type="dc:Point" x="1202" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_1ffbejz_di" bpmnElement="TextAnnotation_1ffbejz">
+        <dc:Bounds x="620" y="67" width="100" height="41" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1flcmdc_di" bpmnElement="Association_1flcmdc">
+        <di:waypoint xsi:type="dc:Point" x="653" y="137" />
+        <di:waypoint xsi:type="dc:Point" x="663" y="108" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0xdo4de_di" bpmnElement="TextAnnotation_0xdo4de">
+        <dc:Bounds x="470" y="70" width="100" height="41" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0h3fmi3_di" bpmnElement="Association_0h3fmi3">
+        <di:waypoint xsi:type="dc:Point" x="499" y="137" />
+        <di:waypoint xsi:type="dc:Point" x="511" y="111" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0ilt1ff_di" bpmnElement="TextAnnotation_0ilt1ff">
+        <dc:Bounds x="780" y="60" width="100" height="41" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1c5m6u1_di" bpmnElement="Association_1c5m6u1">
+        <di:waypoint xsi:type="dc:Point" x="813" y="137" />
+        <di:waypoint xsi:type="dc:Point" x="824" y="101" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_1ikreuy_di" bpmnElement="TextAnnotation_1ikreuy">
+        <dc:Bounds x="930" y="60" width="100" height="41" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_05zp63r_di" bpmnElement="Association_05zp63r">
+        <di:waypoint xsi:type="dc:Point" x="968" y="137" />
+        <di:waypoint xsi:type="dc:Point" x="976" y="101" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0mm1ex6_di" bpmnElement="TextAnnotation_0mm1ex6">
+        <dc:Bounds x="1090" y="66" width="90" height="41" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0iqx2ji_di" bpmnElement="Association_0iqx2ji">
+        <di:waypoint xsi:type="dc:Point" x="1116" y="137" />
+        <di:waypoint xsi:type="dc:Point" x="1127" y="107" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_03c5998_di" bpmnElement="TextAnnotation_03c5998">
+        <dc:Bounds x="300" y="73" width="130" height="42" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0kwleqf_di" bpmnElement="Association_0kwleqf">
+        <di:waypoint xsi:type="dc:Point" x="342" y="137" />
+        <di:waypoint xsi:type="dc:Point" x="354" y="115" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="AdHocSubProcess_0hn5l6p_di" bpmnElement="Task_0e0x6yk">
+        <dc:Bounds x="270" y="137" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

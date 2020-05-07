@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_10ens47" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.6.0">
+  <decision id="Decision_1x4ww38" name="Capital tax">
+    <extensionElements>
+      <biodi:bounds x="339" y="139" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="DecisionTable_0f0hlbt">
+      <input id="InputClause_0hlusvz" label="Years of real-estate posession">
+        <inputExpression id="LiteralExpression_1n9x05t" typeRef="string" />
+      </input>
+      <output id="OutputClause_1svkjmt" label="Capital tax rate" typeRef="string" />
+      <rule id="DecisionRule_1dens75">
+        <inputEntry id="UnaryTests_1uusbnc">
+          <text>0-5y</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1kwzohy">
+          <text>27,5%</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1lj9fkn">
+        <inputEntry id="UnaryTests_09rh8s0">
+          <text>5-10y</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0oijqgy">
+          <text>20%</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0xdqfhq">
+        <inputEntry id="UnaryTests_0nr6avq">
+          <text>10-15y</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0w4gjek">
+          <text>15%</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1r8b09o">
+        <inputEntry id="UnaryTests_11tydu1">
+          <text>15-20y</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_101z9u4">
+          <text>10%</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0uosmm4">
+        <inputEntry id="UnaryTests_192p1qm">
+          <text>&gt;20y</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1967ymu">
+          <text>0%</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
